@@ -55,7 +55,7 @@ st.markdown("""
     .spotify-row {
         display: flex;
         align-items: center;
-        padding: 12px;
+        padding: 5px;
         border-bottom: 1px solid #ddd;
         font-family: Arial, sans-serif;
         font-size: 16px;
