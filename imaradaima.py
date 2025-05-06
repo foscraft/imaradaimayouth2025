@@ -119,7 +119,7 @@ if page == "Home":
     st.markdown('<p class="subtitle">Scan or download the QR code to access our music album, launching June 1st!</p>', unsafe_allow_html=True)
 
     # Generate and show QR code
-    download_page_url = "http://127.0.0.1:4009/?page=download"  # Update for deployment
+    download_page_url = "https://siondoki-album.streamlit.app/?page=download"  # Update for deployment
     qr_code_path = generate_qr_code(download_page_url)
     qr_image = Image.open(qr_code_path)
 
