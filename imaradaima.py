@@ -150,6 +150,12 @@ elif page == "Download The Siondoki Album":
     st.markdown('<div class="main">', unsafe_allow_html=True)
     st.markdown('<h3 class="title">Download The Siondoki Album</h3>', unsafe_allow_html=True)
     st.markdown('<p class="subtitle">Click to download songs or the full album.</p>', unsafe_allow_html=True)
+    
+    # Display album cover at the top
+    if os.path.exists("album/cover.jpg"):
+        st.image("album/cover.jpg", caption="Siondoki Album Cover", use_container_width=True)
+    else:
+        st.error("Album cover not found at 'album/cover.jpg'.")
 
     # List songs in a table-like layout
     song_folder = "album"
