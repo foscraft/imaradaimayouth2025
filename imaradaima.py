@@ -151,11 +151,14 @@ elif page == "Download The Siondoki Album":
     st.markdown('<h3 class="title">Download The Siondoki Album</h3>', unsafe_allow_html=True)
     st.markdown('<p class="subtitle">Click to download songs or the full album.</p>', unsafe_allow_html=True)
     
-    # Display album cover at the top
+    # Center the album cover (passport size)
     if os.path.exists("album/cover.jpg"):
-        st.image("album/cover.jpg", caption="Siondoki Album Cover", width=150)
+        col1, col2, col3 = st.columns([1, 2, 1])  # Middle column for image
+        with col2:
+            st.image("album/cover.jpg", caption="Siondoki Album Cover", width=200)  # Passport size: ~150px
     else:
         st.error("Album cover not found at 'album/cover.jpg'.")
+        
 
     # List songs in a table-like layout
     song_folder = "album"
