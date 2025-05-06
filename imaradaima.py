@@ -153,7 +153,7 @@ elif page == "Download The Siondoki Album":
     
     # Display album cover at the top
     if os.path.exists("album/cover.jpg"):
-        st.image("album/cover.jpg", caption="Siondoki Album Cover", use_container_width=True)
+        st.image("album/cover.jpg", caption="Siondoki Album Cover", width=150)
     else:
         st.error("Album cover not found at 'album/cover.jpg'.")
 
