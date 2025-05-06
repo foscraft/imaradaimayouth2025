@@ -6,12 +6,17 @@ import os
 # App configuration
 st.set_page_config(
     page_title="Siondoki Album Launch by Imara Daima Youth Choir",
-    page_icon="🎵",
+    page_icon="album/cover.jpg" if os.path.exists("album/cover.jpg") else "🎵",  # Custom favicon
     layout="centered",
-    initial_sidebar_state="collapsed"
+    initial_sidebar_state="collapsed",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None  # Remove Streamlit's default menu items
+    }
 )
 
-# CSS for Spotify-like table and consistent styling
+# CSS for Spotify-like table, consistent styling, and hiding Streamlit branding
 st.markdown("""
     <style>
     .main {
@@ -91,6 +96,11 @@ st.markdown("""
     .download-button:hover {
         background-color: #17a34a;
     }
+    /* Hide Streamlit branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    [data-testid="stToolbar"] {visibility: hidden;}
+    [data-testid="stDecoration"] {visibility: hidden;}
     </style>
 """, unsafe_allow_html=True)
 
@@ -155,10 +165,9 @@ elif page == "Download The Siondoki Album":
     if os.path.exists("album/cover.jpg"):
         col1, col2, col3 = st.columns([1, 2, 1])  # Middle column for image
         with col2:
-            st.image("album/cover.jpg", caption="Siondoki Album Cover", width=200)  # Passport size: ~150px
+            st.image("album/cover.jpg", caption="Siondoki Album Cover", width=150)  # Passport size: ~150px
     else:
         st.error("Album cover not found at 'album/cover.jpg'.")
-        
 
     # List songs in a table-like layout
     song_folder = "album"
