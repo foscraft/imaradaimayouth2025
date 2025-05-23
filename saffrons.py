@@ -4,7 +4,7 @@ import os
 # App configuration
 st.set_page_config(
     page_title="Taji Mvikeni Album by Imara Daima Pathfinder Club, The Saffrons",
-    page_icon="album/cover.jpg" if os.path.exists("album/cover.jpg") else "🎵",
+    page_icon="album/over.png" if os.path.exists("album/over.png") else "🎵",
     layout="centered",
     initial_sidebar_state="collapsed",
     menu_items={
@@ -111,15 +111,26 @@ st.markdown("""
 # Main page
 st.markdown('<div class="main">', unsafe_allow_html=True)
 st.markdown('<h3 class="title">Taji Mvikeni Album by Imara Daima Pathfinder Club, The Saffrons</h3>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle">Download the album songs below, launching June 1st!</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle">Download the album songs below, launching May 24th!</p>', unsafe_allow_html=True)
 
-# Center the album cover (passport size)
-if os.path.exists("album/cover.jpg"):
-    col1, col2, col3 = st.columns([1, 2, 1])  # Middle column for image
-    with col2:
-        st.image("album/cover.jpg", caption="Taji Mvikeni Album Cover", width=150)  # Passport size: ~150px
-else:
-    st.error("Album cover not found at 'album/cover.jpg'.")
+# Center two album covers side by side
+st.markdown('<div style="display: flex; justify-content: center; gap: 20px;">', unsafe_allow_html=True)
+col1, col2 = st.columns(2)  # Two equal columns for images
+
+# First image
+with col1:
+    if os.path.exists("album/over.png"):
+        st.image("album/over.png", caption="Taji Mvikeni Album", width=150)  # Passport size
+    else:
+        st.error("Album cover not found at 'album/over.png'.")
+
+# Second image
+with col2:
+    if os.path.exists("album/over.jpeg"):  # Replace with your second image path
+        st.image("album/over.jpeg", caption="The Saffrons", width=150)  # Passport size
+    else:
+        st.error("Second album cover not found at 'album/over.jpeg'.")
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Song list section
 st.markdown("### Song List")
@@ -171,21 +182,6 @@ if mp3_files:
             )
 else:
     st.error("No songs found in the 'album' folder.")
-
-# Full album download
-st.markdown("### Full Album")
-album_file = os.path.join(song_folder, "taji_mvikeni_album.zip")
-if os.path.exists(album_file):
-    with open(album_file, "rb") as f:
-        st.download_button(
-            label="Download Full Album",
-            data=f,
-            file_name="taji_mvikeni_album.zip",
-            mime="application/zip",
-            key="full_album"
-        )
-else:
-    st.error("Error: Full album not found at 'album/taji_mvikeni_album.zip'.")
 
 st.markdown('<p class="footer">Presented by Imara Daima Pathfinder Club, The Saffrons © 2025</p>', unsafe_allow_html=True)
 st.markdown('</div>', unsafe_allow_html=True)
